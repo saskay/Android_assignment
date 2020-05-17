@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">作業</string>
+    <string name="login_txt">登入</string>
+    <string name="login_id_txt">登入名稱</string>
+    <string name="login_id_hint">登入名稱</string>
+    <string name="password_txt">密碼</string>
+    <string name="re_password_txt">確認密碼</string>
+    <string name="register_txt">註冊</string>
+    <string name="btn_refresh">重新整理</string>
+    <string name="btn_create">建立</string>
+    <string name="btn_login">登入</string>
+    <string name="btn_register">註冊</string>
+    <string name="btn_logout">登出</string>
+    <string name="btn_comment">留言</string>
+    <string name="post_title_txt">帖子標題</string>
+    <string name="create_post_txt">建立帖子</string>
+    <string name="post_content_txt">帖子內容</string>
+</resources>

@@ -19,7 +19,8 @@ public class LocationAddress {
         Thread thread = new Thread(){
             @Override
             public void run() {
-                Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+                Locale aLocale = new Locale.Builder().setLanguage("en").setScript("Latn").setRegion("US").build();
+                Geocoder geocoder = new Geocoder(context, aLocale);
                 String result = null;
                 try {
                     List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
@@ -32,6 +33,7 @@ public class LocationAddress {
                         String detailAdress[] = address.getAddressLine(0).split(",");
                         int counter = detailAdress.length;
 //                        sb.append(detailAdress[counter - 2]);
+                        System.out.println(address.getAddressLine(0));
                         result = detailAdress[counter - 2].trim();
                     }
                 } catch (IOException e){

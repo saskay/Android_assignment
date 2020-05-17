@@ -53,7 +53,7 @@ public class CreatePostActivity extends AppCompatActivity {
         SharedPreferences auth = getSharedPreferences("auth", MODE_PRIVATE);
         String area = auth.getString("area", "");
         String login_id = auth.getString("login_id", "");
-        System.out.println("area: " + area + "login_id" + login_id);
+//        System.out.println("area: " + area + "login_id" + login_id);
         if(area == "" || login_id == ""){
             Toast.makeText(CreatePostActivity.this, "Cannot get current area.", Toast.LENGTH_LONG).show();
         }else{
@@ -64,7 +64,6 @@ public class CreatePostActivity extends AppCompatActivity {
             }else{
                 JSONObject jsonObject = new JSONObject();
                 JSONObject j_login_id = new JSONObject();
-                JSONObject j_post_content = new JSONObject();
                 JSONArray comments = new JSONArray();
                 try{
                     jsonObject.put("post_area", area);

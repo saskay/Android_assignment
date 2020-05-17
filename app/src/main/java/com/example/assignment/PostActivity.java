@@ -1,8 +1,11 @@
 package com.example.assignment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,6 +31,8 @@ public class PostActivity extends AppCompatActivity {
     private ArrayList<DetailPost> detailPosts = new ArrayList();
     private ListView listView;
     private String title;
+    private Button btn_leave_comment;
+    private Button btn_post_refresh;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -38,10 +43,28 @@ public class PostActivity extends AppCompatActivity {
 
             listView = findViewById(R.id.details_post_list);
             TextView post_title = findViewById(R.id.post_title);
+            btn_leave_comment = findViewById(R.id.btn_comment);
+            btn_post_refresh = findViewById(R.id.btn_post_refresh);
 
             title = getIntent().getExtras().getString("title");
             post_title.setText(title);
             getPostWithTitle(title);
+
+            btn_post_refresh.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getPostWithTitle(title);
+                }
+            });
+
+            btn_leave_comment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent comment = new Intent(PostActivity.this, CommentActivity.class);
+                    comment.putExtra("title", title);
+                    startActivity(comment);
+                }
+            });
         }
 
     private void getPostWithTitle(String title){
@@ -65,11 +88,11 @@ public class PostActivity extends AppCompatActivity {
                     PostActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
                             try {
                                 JSONArray temp =  result.getJSONArray("post_comments");
                                 int len = temp.length();
                                 System.out.println("temp: " + temp);
+                                detailPosts.clear();
                                 for(int i = 0; i < len; i++){
                                     JSONObject current = (JSONObject) temp.getJSONObject(i);
                                     String comment_owner = current.getString("comment_owner");
