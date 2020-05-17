@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
@@ -66,7 +67,16 @@ public class PrimaryActivity extends AppCompatActivity {
         location_name = (TextView) findViewById(R.id.location_name);
         listView = (ListView) findViewById(R.id.post_list);
         Button btn_refresh = (Button) findViewById(R.id.btn_refresh);
+        Button btn_create_post = (Button) findViewById(R.id.btn_create);
 
+        btn_create_post.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent createPost = new Intent(PrimaryActivity.this, CreatePostActivity.class);
+                startActivity(createPost);
+            }
+        });
 
         btn_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,7 +166,7 @@ public class PrimaryActivity extends AppCompatActivity {
         }
     }
 
-    private void getPostWithLocation(String location){
+    private void getPostWithLocation(final String location){
         OkHttpClient client = new OkHttpClient();
         HttpUrl.Builder Builder = HttpUrl.parse("https://androidkbackend.herokuapp.com/areaposts").newBuilder();
         Builder.addQueryParameter("area",location);
@@ -188,6 +198,8 @@ public class PrimaryActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                             }
+                            SharedPreferences auth = getSharedPreferences("auth", MODE_PRIVATE);
+                            auth.edit().putString("area", location).commit();
                             ArrayAdapter adapter = new ArrayAdapter(PrimaryActivity.this, android.R.layout.simple_list_item_1, post);
                             listView.setAdapter(adapter);
                         }

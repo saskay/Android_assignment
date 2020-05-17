@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject result = new JSONObject(responseString);
                             if(result.getInt("user_id") > 0) {
                                 Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_LONG).show();
-                                startPrimaryActivity(result.getInt("user_id"), result.getString("login_id"));
+                                startPrimaryActivity(result.getString("login_id"));
                             }else{
                                 Toast.makeText(getApplicationContext(), "Login fail, Please try again!", Toast.LENGTH_LONG).show();
                             }
@@ -104,11 +104,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void startPrimaryActivity(int user_id, String login_id) {
+    private void startPrimaryActivity(String login_id) {
         SharedPreferences auth = getSharedPreferences("auth", MODE_PRIVATE);
-        auth.edit().putString("login_status", "true");
-        auth.edit().putString("user_id", String.valueOf(user_id));
-        auth.edit().putString("login_id", login_id);
+        auth.edit().putString("login_status", "true").commit();
+        auth.edit().putString("login_id", login_id).commit();
 
         Intent intent = new Intent(this, PrimaryActivity.class);
         startActivity(intent);

@@ -14,4 +14,7 @@
     <string name="btn_comment">Leave Comment</string>
     <string name="like_txt">Like</string>
     <string name="dislike_txt">Dislike</string>
+    <string name="post_title_txt">Post Title</string>
+    <string name="create_post_txt">Create Post</string>
+    <string name="post_content_txt">Post Content</string>
 </resources>
