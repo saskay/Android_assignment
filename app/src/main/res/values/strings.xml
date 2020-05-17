@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">assignment</string>
+    <string name="login_txt">Login</string>
+    <string name="login_id_txt">Login ID</string>
+    <string name="login_id_hint">Login ID</string>
+    <string name="password_txt">Password</string>
+    <string name="re_password_txt">Re-Password</string>
+    <string name="register_txt">Register</string>
+    <string name="btn_refresh">Refresh</string>
+    <string name="btn_create">Create</string>
+    <string name="btn_login">LogIn</string>
+    <string name="btn_register">Register</string>
+    <string name="btn_logout">Logout</string>
+    <string name="btn_comment">Leave Comment</string>
+    <string name="like_txt">Like</string>
+    <string name="dislike_txt">Dislike</string>
+</resources>
